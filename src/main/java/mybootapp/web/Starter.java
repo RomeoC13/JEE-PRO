@@ -5,26 +5,19 @@ import javax.servlet.ServletException;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import mybootapp.model.Course;
-import mybootapp.repo.CourseRepository;
 import org.springframework.web.util.UrlPathHelper;
 
 @SpringBootApplication
-@EnableJpaRepositories(basePackageClasses = CourseRepository.class)
-@EntityScan(basePackageClasses = Course.class)
 public class Starter extends SpringBootServletInitializer implements WebMvcConfigurer {
 
 	@Override
@@ -71,8 +64,4 @@ public class Starter extends SpringBootServletInitializer implements WebMvcConfi
 		return factory;
 	}
 
-	@Override
-	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new LoggerInterceptor());
-	}
 }

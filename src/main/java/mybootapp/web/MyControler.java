@@ -1,27 +1,31 @@
 package mybootapp.web;
 
+import mybootapp.model.Person;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/")
 public class MyControler {
+    Person person;
 
-	/*
-	 * Récupérer un message particulier dans le fichier de configuration pour ne pas
-	 * utiliser de constantes dans le code.
-	 */
-	@Value("${application.message:Hello World}")
-	private String message;
+    @RequestMapping("")
+    public String index() {
+        return "index";
+    }
 
-	/*
-	 * Point d'entrée principal de l'application.
-	 */
-	@RequestMapping("")
-	public ModelAndView index() {
-		return new ModelAndView("index", "message", message);
-	}
+    @RequestMapping("/login2")
+    public String login(@ModelAttribute Person p) {
+        return "loginForm";
+    }
+
+    @RequestMapping("/register")
+    public String register(@ModelAttribute Person p) {
+        return "registerForm";
+    }
 
 }
