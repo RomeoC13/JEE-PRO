@@ -63,5 +63,4 @@ public class Starter extends SpringBootServletInitializer implements WebMvcConfi
 		factory.setValidationMessageSource(messageSource());
 		return factory;
 	}
-
 }
