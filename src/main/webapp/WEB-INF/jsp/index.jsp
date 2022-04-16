@@ -1,16 +1,18 @@
-f<%@ include file="/WEB-INF/jsp/header.jsp"%>
 
-<c:url var="list" value="/course/list" />
+<%@ include file="/WEB-INF/jsp/header.jsp" %>
 
 <div class="container">
-	<h1>Spring boot application</h1>
-	<p>
-		Message is
-		<c:out value="${message}" />
-	</p>
-	<p>
-		<a href="${list}">Course</a>
-	</p>
+    <h1>Home of the application</h1>
+    <form method="get" action="/viewMail">
+        Look for an email
+        <input type="email" name="key"/>
+        <input type="submit" />
+    </form>
+    <form method="get" action="/viewGroup">
+        Look for an group
+        <input type="text" name="key"/>
+        <input type="submit"/>
+    </form>
 </div>
 
-<%@ include file="/WEB-INF/jsp/footer.jsp"%>
+<%@ include file="/WEB-INF/jsp/footer.jsp" %>

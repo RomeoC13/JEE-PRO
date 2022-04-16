@@ -28,4 +28,14 @@ public class MyControler {
         return "registerForm";
     }
 
+    @RequestMapping("/viewMail")
+    public ModelAndView viewMail(@RequestParam String key){
+        return new ModelAndView("viewMail", "mail",key);
+    }
+
+    @RequestMapping("/viewGroup")
+    public ModelAndView viewGroup(@RequestParam String key){
+        return new ModelAndView("viewGroup", "group",key);
+    }
+
 }
