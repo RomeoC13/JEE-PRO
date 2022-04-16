@@ -11,9 +11,9 @@ import java.util.Collection;
 @Service// obligatoire?
 @Repository
 @Transactional// Repository et Transactional => la classe va manipuler des données et chaque méthode doit être exécutée dans une transaction
-public class DirectoryDao implements IDirectoryDao {
+public class DirectoryDao { //implements IDirectoryDao {
 
-    @PersistenceContext//réclame l'injection d'une EM, multi thread OK (un thread est associé à chaque requête et un EM à chaque thread)
+    @PersistenceContext()//réclame l'injection d'une EM, multi thread OK (un thread est associé à chaque requête et un EM à chaque thread)
     EntityManager em;
 
     //private EntityManagerFactory factory = null;
