@@ -1,10 +1,10 @@
 <%@ include file="/WEB-INF/jsp/header.jsp" %>
 
-<h1>Group View with <c:out value="${key}"/></h1>
+<c:url var="home" value="/"/>
+<a href="${home}">Home</a>
 
-</br>
-
-<div id="card-container">
+<div id="card-container" class="container">
+    <h1>Group View with <c:out value="${key}"/></h1>
     <c:forEach items="${data}" var="person">
         <div class="person-card">
             <fmt:formatDate value="${person.birthDay}" var="birthday" type="date" pattern="MM-dd-yyyy"/>

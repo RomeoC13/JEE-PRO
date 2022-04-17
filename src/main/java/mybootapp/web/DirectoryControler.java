@@ -18,8 +18,8 @@ import java.util.Date;
 @Controller
 @RequestMapping("/")
 //@SpringBootApplication(scanBasePackages={"mybootapp.dao", "mybootapp.business"})
-@ComponentScan(basePackages= {"mybootapp.dao", "mybootapp.business"})
-public class MyControler {
+@ComponentScan(basePackages = {"mybootapp.dao", "mybootapp.business"})
+public class DirectoryControler {
 
     @Autowired
     DirectoryDao dao;
@@ -28,7 +28,7 @@ public class MyControler {
     DirectoryManager dm;
 
     @PostConstruct
-    public void init(){
+    public void init() {
         Group groupe1 = new Group("groupe 1");
         Group groupe2 = new Group("groupe 2");
 
@@ -77,6 +77,22 @@ public class MyControler {
         ModelAndView modelAndView = new ModelAndView("viewResult");
         modelAndView.addObject("data", dm.searchPersonsByLastName(key));
         modelAndView.addObject("key", "with last name : " + key);
+        return modelAndView;
+    }
+
+    @RequestMapping("/viewAll")
+    public ModelAndView viewAll() {
+        ModelAndView modelAndView = new ModelAndView("viewResult");
+        modelAndView.addObject("data", dm.searchAllPersons());
+        modelAndView.addObject("key", "with no criteria");
+        return modelAndView;
+    }
+
+    @RequestMapping("/viewGroupP")
+    public ModelAndView viewGroupP(@RequestParam String key) {
+        ModelAndView modelAndView = new ModelAndView("viewResult");
+        modelAndView.addObject("data", dm.searchPersonsFromGroupv2(key));
+        modelAndView.addObject("key", "from group :" + key);
         return modelAndView;
     }
 }
