@@ -1,6 +1,6 @@
 <%@ include file="/WEB-INF/jsp/header.jsp" %>
 
-Group View with key <c:out value="${key}"/>
+<h1>Group View with key <c:out value="${key}"/></h1>
 
 </br>
 

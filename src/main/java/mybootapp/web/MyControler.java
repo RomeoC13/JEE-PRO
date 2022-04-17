@@ -31,10 +31,9 @@ public class MyControler {
     public void init(){
         Group groupe1 = new Group("groupe 1");
         Group groupe2 = new Group("groupe 2");
-        Group group3 = new Group("groupe test");
 
         Person p1 = new Person(groupe1, "Jean", "Dupont", "jean@protonmail.com", "jean.com", new Date(01 / 01 / 1921), "password_jean");
-        Person p2 = new Person(group3, "Pierre", "Dupont", "pierre@protonmail.com", "pierre.com", new Date(01 / 01 / 1921), "password_pierre");
+        Person p2 = new Person(null, "Pierre", "Dupont", "pierre@protonmail.com", "pierre.com", new Date(01 / 01 / 1921), "password_pierre");
         Person p3 = new Person(groupe2, "Thomas", "Dupont", "thomas@protonmail.ch", "thomas.com", new Date(01 / 01 / 1921), "password_thomas");
 
         dao.addPerson(p1);
@@ -58,18 +57,26 @@ public class MyControler {
     }
 
     @RequestMapping("/viewMail")
-    public ModelAndView viewMail(@RequestParam String key){
-        ModelAndView modelAndView = new ModelAndView("viewMail");
-        modelAndView.addObject("mailList",dm.searchPersonsByEmailAddress(key));
-        modelAndView.addObject("key", key);
+    public ModelAndView viewMail(@RequestParam String key) {
+        ModelAndView modelAndView = new ModelAndView("viewResult");
+        modelAndView.addObject("data", dm.searchPersonsByEmailAddress(key));
+        modelAndView.addObject("key", "with mail :" + key);
         return modelAndView;
     }
 
     @RequestMapping("/viewGroup")
-    public ModelAndView viewGroup(@RequestParam String key){
-        ModelAndView modelAndView=  new ModelAndView("viewGroup");
-        modelAndView.addObject("groupList",dm.searchGroupsByName(key));
+    public ModelAndView viewGroup(@RequestParam String key) {
+        ModelAndView modelAndView = new ModelAndView("viewGroup");
+        modelAndView.addObject("groupList", dm.searchGroupsByName(key));
         modelAndView.addObject("key", key);
+        return modelAndView;
+    }
+
+    @RequestMapping("/viewPeople")
+    public ModelAndView viewPeople(@RequestParam String key) {
+        ModelAndView modelAndView = new ModelAndView("viewResult");
+        modelAndView.addObject("data", dm.searchPersonsByLastName(key));
+        modelAndView.addObject("key", "with last name : " + key);
         return modelAndView;
     }
 }
