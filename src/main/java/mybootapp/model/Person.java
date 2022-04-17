@@ -1,11 +1,11 @@
 package mybootapp.model;
 
-import mybootapp.model.Group;
-import java.io.Serializable;
-import java.util.Date;
-import javax.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
 
 @Entity(name = "Person")//la classe est un EJB Entity qui va représenter les données de la base de données relationnelle.
 @Data
@@ -76,6 +76,7 @@ public class Person implements Serializable {
 		this.birthDay = birthday;
 		this.password = password;
 	}
+
 
     /*@PreUpdate
     public void beforeUpdate() {

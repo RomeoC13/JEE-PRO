@@ -1,14 +1,16 @@
 package mybootapp.model;
 
-import mybootapp.model.Person;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
-import javax.persistence.*;
-import lombok.NoArgsConstructor;
 
 @Entity(name = "Group")
 @NoArgsConstructor
 @Table(name = "TGroup")
+@Data
 public class Group implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -28,9 +30,5 @@ public class Group implements Serializable {
     public Group(String name)
     {
         this.name = name;
-    }
-
-    public long getGroupId(){
-        return this.id;
     }
 }

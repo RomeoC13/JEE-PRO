@@ -8,9 +8,10 @@ Group View with key <c:out value="${key}"/>
     <div>
         <c:out value="${group.name}"/>
         <div>
-            <c:forEach items="${groupList.persons}" var="person">
-                <c:out value="${person.LastName}"/>
-            </c:forEach>
+                <%--            <c:forEach items="${group.persons}" var="person">--%>
+                <%--                test--%>
+                <%--                <c:out value="${person.LastName}"/>--%>
+                <%--            </c:forEach>--%>
         </div>
     </div>
 </c:forEach>

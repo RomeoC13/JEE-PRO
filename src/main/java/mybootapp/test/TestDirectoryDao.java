@@ -1,6 +1,5 @@
 package mybootapp.test;
 
-import mybootapp.dao.IDirectoryDao;
 import mybootapp.dao.DirectoryDao;
 import mybootapp.dao.SpringDaoConfig;
 import mybootapp.model.Group;
@@ -16,9 +15,12 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.Collection;
 import java.util.Date;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -190,7 +192,7 @@ public class TestDirectoryDao {
         dao.addPerson(p2);
         dao.addPerson(p3);
 
-        Collection<Person> ps = dao.searchPersonsFromGroup(p1.getUserGroup().getGroupId());
+        Collection<Person> ps = dao.searchPersonsFromGroup(p1.getUserGroup().getId());
         assertNotNull(ps, "not 2 persons in groupe 1 <testSearchPersonsFromGroup>");
         assertEquals(2, ps.size());
     }
