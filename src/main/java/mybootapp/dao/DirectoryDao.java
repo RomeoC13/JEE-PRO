@@ -2,16 +2,17 @@ package mybootapp.dao;
 
 import mybootapp.model.Person;
 import mybootapp.model.Group;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.*;
 import java.util.Collection;
 
-@Service// obligatoire?
+//@Service //obligatoire?
 @Repository
 @Transactional// Repository et Transactional => la classe va manipuler des données et chaque méthode doit être exécutée dans une transaction
-public class DirectoryDao { //implements IDirectoryDao {
+public class DirectoryDao {//implements IDirectoryDao {
 
     @PersistenceContext()//réclame l'injection d'une EM, multi thread OK (un thread est associé à chaque requête et un EM à chaque thread)
     EntityManager em;

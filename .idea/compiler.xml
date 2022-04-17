@@ -7,6 +7,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="v2" />
         <module name="jeeWebApp" />
         <module name="JEE-PRO" />
       </profile>
@@ -16,6 +17,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="JEE-PRO" options="-parameters" />
       <module name="jeeWebApp" options="-parameters" />
+      <module name="v2" options="-parameters" />
     </option>
   </component>
 </project>

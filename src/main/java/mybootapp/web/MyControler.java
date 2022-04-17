@@ -1,58 +1,51 @@
 package mybootapp.web;
 
+import mybootapp.business.IDirectoryManager;
 import mybootapp.dao.DirectoryDao;
-import mybootapp.dao.SpringDaoConfig;
-import mybootapp.model.Group;
 import mybootapp.model.Person;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.TestMethodOrder;
-import org.junit.jupiter.api.extension.ExtendWith;
+import mybootapp.model.Group;
+import mybootapp.business.DirectoryManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.PostConstruct;
+import java.util.Date;
 
 @Controller
 @RequestMapping("/")
+//@SpringBootApplication(scanBasePackages={"mybootapp.dao", "mybootapp.business"})
+@ComponentScan(basePackages= {"mybootapp.dao", "mybootapp.business"})
 public class MyControler {
 
     @Autowired
     DirectoryDao dao;
 
+    @Autowired
+    DirectoryManager dm;
+
     @PostConstruct
     public void init(){
-        //TO TEST
-        Group testGroup = new Group("FSI");
+        Group groupe1 = new Group("groupe 1");
+        Group groupe2 = new Group("groupe 2");
 
+        Person p1 = new Person(groupe1, "Jean", "Dupont", "jean@protonmail.com", "jean.com", new Date(01/01/1921), "password_jean");
+        Person p2 = new Person(groupe1, "Pierre", "Dupont", "pierre@protonmail.com", "pierre.com", new Date(01/01/1921), "password_pierre");
+        Person p3 = new Person(groupe2, "Thomas", "Dupont", "thomas@protonmail.ch", "thomas.com", new Date(01/01/1921), "password_thomas");
 
-        Person per1 = new Person();
-        per1.setId(0);
-        per1.setFirstName("Roméo");
-        per1.setLastName("CHATEL");
-        per1.setEmailAddress("romeo@romeo.fr");
-        per1.setUserGroup(testGroup);
-        dao.addPerson(per1);
-
-        Person per2 = new Person();
-        per2.setId(1);
-        per2.setFirstName("Louis");
-        per2.setLastName("DE CAMPOU");
-        per2.setEmailAddress("louis@louis.com");
-        per2.setUserGroup(testGroup);
-        dao.addPerson(per2);
+        dao.addPerson(p1);
+        dao.addPerson(p2);
+        dao.addPerson(p3);
     }
 
     @RequestMapping("")
@@ -73,7 +66,7 @@ public class MyControler {
     @RequestMapping("/viewMail")
     public ModelAndView viewMail(@RequestParam String key){
         ModelAndView modelAndView = new ModelAndView("viewMail");
-        modelAndView.addObject("mailList",dao.searchPersonsByEmailAddress(key));
+        modelAndView.addObject("mailList",dm.searchPersonsByEmailAddress(key));
         modelAndView.addObject("key", key);
         return modelAndView;
     }
@@ -81,9 +74,8 @@ public class MyControler {
     @RequestMapping("/viewGroup")
     public ModelAndView viewGroup(@RequestParam String key){
         ModelAndView modelAndView=  new ModelAndView("viewGroup");
-        modelAndView.addObject("groupList",dao.searchGroupsByName(key));
+        modelAndView.addObject("groupList",dm.searchGroupsByName(key));
         modelAndView.addObject("key", key);
         return modelAndView;
     }
-
 }

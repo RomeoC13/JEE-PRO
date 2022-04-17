@@ -1,5 +1,6 @@
 package mybootapp.test;
 
+import mybootapp.dao.IDirectoryDao;
 import mybootapp.dao.DirectoryDao;
 import mybootapp.dao.SpringDaoConfig;
 import mybootapp.model.Group;
@@ -26,7 +27,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TestDirectoryDao {
 
     @Autowired
-    DirectoryDao dao;//Instanciée une seule fois car la création d'une EMF est très coûteuse
+    //IDirectoryDao dao;//Instanciée une seule fois car la création d'une EMF est très coûteuse
+    DirectoryDao dao;
 
     @Test
     @Transactional
