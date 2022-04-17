@@ -4,9 +4,14 @@ Group View with key <c:out value="${key}"/>
 
 </br>
 
-<c:forEach items="${mailList}" var="person">
+<c:forEach items="${groupList}" var="group">
     <div>
-        <c:out value="${person.firstName}"/>
+        <c:out value="${group.name}"/>
+        <div>
+            <c:forEach items="${groupList.persons}" var="person">
+                <c:out value="${person.LastName}"/>
+            </c:forEach>
+        </div>
     </div>
 </c:forEach>
 <%@ include file="/WEB-INF/jsp/footer.jsp" %>
